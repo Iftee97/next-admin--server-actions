@@ -10,7 +10,7 @@ import {
   ResponsiveContainer
 } from "recharts"
 import styles from "./chart.module.css"
-import { chartData } from "@/app/lib/data"
+import { chartData } from "@/lib/data"
 
 export default function Chart() {
   return (

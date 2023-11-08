@@ -49,7 +49,7 @@ export default function UsersPage({ searchParams }) {
             <td>active</td>
             <td>
               <div className={styles.buttons}>
-                <Link href="/dashboard/users">
+                <Link href="/dashboard/users/123">
                   <button className={`${styles.button} ${styles.view}`}>
                     View
                   </button>
