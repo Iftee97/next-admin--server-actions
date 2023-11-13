@@ -1,9 +1,15 @@
+import { addProduct } from "@/lib/actions"
 import styles from "@/app/ui/dashboard/products/add-product/add-product.module.css"
+
+export const metadata = {
+  title: "Add Products | Next Admin",
+  description: "Products page",
+}
 
 export default function AddProductPage() {
   return (
     <div className={styles.container}>
-      <form className={styles.form}>
+      <form action={addProduct} className={styles.form}>
         <input
           type="text"
           placeholder="title"

@@ -1,9 +1,14 @@
 import styles from "@/app/ui/dashboard/users/add-user/add-user.module.css"
 
+export const metadata = {
+  title: "Add Users | Next Admin",
+  description: "Users page",
+}
+
 export default function AddUserPage() {
   return (
     <div className={styles.container}>
-      <form className={styles.form}>
+      <form action="" className={styles.form}>
         <input
           type="text"
           placeholder="username"

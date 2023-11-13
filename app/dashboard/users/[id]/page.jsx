@@ -1,6 +1,11 @@
 import Image from "next/image"
 import styles from "@/app/ui/dashboard/users/single-user/single-user.module.css"
 
+export const metadata = {
+  title: "Single User | Next Admin",
+  description: "Users page",
+}
+
 export default function SingleUserPage({ params }) {
   const { id } = params
 

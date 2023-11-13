@@ -1,19 +1,17 @@
 import Image from "next/image"
+import { fetchProduct } from "@/lib/data"
+import { updateProduct } from "@/lib/actions"
 import styles from "@/app/ui/dashboard/products/single-product/single-product.module.css"
 
-export default function SingleProductPage({ params }) {
-  const { id } = params
+export const metadata = {
+  title: "Single Products | Next Admin",
+  description: "Products page",
+}
 
-  const product = {
-    id: id,
-    title: "Product",
-    price: 100,
-    stock: 10,
-    color: "red",
-    size: "XL",
-    cat: "kitchen",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum?",
-  }
+export default async function SingleProductPage({ params }) {
+  const { id } = params
+  const product = await fetchProduct(id)
+  console.log("product: >>>>>>", product)
 
   return (
     <div className={styles.container}>
@@ -28,7 +26,7 @@ export default function SingleProductPage({ params }) {
         {product.title}
       </div>
       <div className={styles.formContainer}>
-        <form className={styles.form}>
+        <form action={updateProduct} className={styles.form}>
           <input
             type="hidden"
             name="id"
@@ -39,38 +37,46 @@ export default function SingleProductPage({ params }) {
             type="text"
             name="title"
             placeholder={product.title}
+          // value={product.title}
           />
           <label>Price</label>
           <input
             type="number"
             name="price"
             placeholder={product.price}
+          // value={product.price}
           />
           <label>Stock</label>
           <input
             type="number"
             name="stock"
             placeholder={product.stock}
+          // value={product.stock}
           />
           <label>Color</label>
           <input
             type="text"
             name="color"
             placeholder={product.color || "color"}
+          // value={product.color || ""}
           />
           <label>Size</label>
-          <textarea
+          <input
             type="text"
             name="size"
             placeholder={product.size || "size"}
+          // value={product.size || ""}
           />
           <label>Cat</label>
           <select name="cat" id="cat">
             <option value="kitchen">
               Kitchen
             </option>
-            <option value="computers">
-              Computers
+            <option value="phone">
+              Phone
+            </option>
+            <option value="computer">
+              Computer
             </option>
           </select>
           <label>Description</label>
@@ -79,6 +85,7 @@ export default function SingleProductPage({ params }) {
             id="desc"
             rows="10"
             placeholder={product.desc}
+          // value={product.desc}
           />
           <button type="submit">
             Update

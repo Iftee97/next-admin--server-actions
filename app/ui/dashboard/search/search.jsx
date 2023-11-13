@@ -18,7 +18,7 @@ export default function Search({ placeholder }) {
     params.set("page", 1)
 
     if (e.target.value) {
-      e.target.value.length > 2 && params.set("q", e.target.value)
+      e.target.value.length > 2 && params.set("q", e.target.value) // set search query if length > 2
     } else {
       params.delete("q")
     }
@@ -32,7 +32,7 @@ export default function Search({ placeholder }) {
         type="text"
         placeholder={placeholder}
         className={styles.input}
-      // onChange={handleSearch}
+        onChange={handleSearch}
       />
     </div>
   )

@@ -3,10 +3,18 @@ import Image from "next/image"
 import Search from "@/app/ui/dashboard/search/search"
 import Pagination from "@/app/ui/dashboard/pagination/pagination"
 import styles from "@/app/ui/dashboard/users/users.module.css"
+import { fetchUsers } from "@/lib/data"
 
-export default function UsersPage({ searchParams }) {
+export const metadata = {
+  title: "Users | Next Admin",
+  description: "Users page",
+}
+
+export default async function UsersPage({ searchParams }) {
   const q = searchParams?.q || ""
   const page = searchParams?.page || 1
+  const users = await fetchUsers(q, page)
+  // console.log("users: >>>>>>>", users)
 
   return (
     <div className={styles.container}>
