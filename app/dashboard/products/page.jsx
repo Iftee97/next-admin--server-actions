@@ -53,7 +53,10 @@ export default async function ProductsPage({ searchParams }) {
                   <span>{product.title}</span>
                 </div>
               </td>
-              <td>{product.desc.substring(0, 50)}...</td>
+              <td>
+                {product.desc.substring(0, 50)}
+                {product.desc.length > 50 && "..."}
+              </td>
               <td>${product.price}</td>
               <td>{product.createdAt?.toString().slice(4, 16)}</td>
               <td>{product.stock}</td>
