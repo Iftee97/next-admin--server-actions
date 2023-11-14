@@ -1,3 +1,4 @@
+import { addUser } from "@/lib/actions"
 import styles from "@/app/ui/dashboard/users/add-user/add-user.module.css"
 
 export const metadata = {
@@ -8,7 +9,7 @@ export const metadata = {
 export default function AddUserPage() {
   return (
     <div className={styles.container}>
-      <form action="" className={styles.form}>
+      <form action={addUser} className={styles.form}>
         <input
           type="text"
           placeholder="username"

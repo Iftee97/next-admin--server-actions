@@ -1,4 +1,6 @@
 import Image from "next/image"
+import { fetchUser } from "@/lib/data"
+import { updateUser } from "@/lib/actions"
 import styles from "@/app/ui/dashboard/users/single-user/single-user.module.css"
 
 export const metadata = {
@@ -6,18 +8,19 @@ export const metadata = {
   description: "Users page",
 }
 
-export default function SingleUserPage({ params }) {
+export default async function SingleUserPage({ params }) {
   const { id } = params
+  const user = await fetchUser(id)
 
-  const user = {
-    id: id,
-    username: "Jon Smith",
-    email: "jon@email.com",
-    phone: "1234567890",
-    address: "1234 Main St, Anytown, USA",
-    isAdmin: false,
-    isActive: true,
-  }
+  // const user = {
+  //   id: id,
+  //   username: "Jon Smith",
+  //   email: "jon@email.com",
+  //   phone: "1234567890",
+  //   address: "1234 Main St, Anytown, USA",
+  //   isAdmin: false,
+  //   isActive: true,
+  // }
 
   return (
     <div className={styles.container}>
@@ -32,7 +35,7 @@ export default function SingleUserPage({ params }) {
         {user.username}
       </div>
       <div className={styles.formContainer}>
-        <form className={styles.form}>
+        <form action={updateUser} className={styles.form}>
           <input
             type="hidden"
             name="id"

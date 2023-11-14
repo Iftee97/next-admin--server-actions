@@ -4,6 +4,7 @@ import Search from "@/app/ui/dashboard/search/search"
 import Pagination from "@/app/ui/dashboard/pagination/pagination"
 import styles from "@/app/ui/dashboard/users/users.module.css"
 import { fetchUsers } from "@/lib/data"
+import { deleteUser } from "@/lib/actions"
 
 export const metadata = {
   title: "Users | Next Admin",
@@ -13,8 +14,8 @@ export const metadata = {
 export default async function UsersPage({ searchParams }) {
   const q = searchParams?.q || ""
   const page = searchParams?.page || 1
-  const users = await fetchUsers(q, page)
-  // console.log("users: >>>>>>>", users)
+  const { users, count } = await fetchUsers(q, page)
+  // console.log({ count, users })
 
   return (
     <div className={styles.container}>
@@ -38,39 +39,48 @@ export default async function UsersPage({ searchParams }) {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <div className={styles.user}>
-                <Image
-                  src="/noavatar.png"
-                  alt="user avatar"
-                  width={40}
-                  height={40}
-                  className={styles.userImage}
-                />
-                Jon Doe
-              </div>
-            </td>
-            <td>jon@email.com</td>
-            <td>13.01.2023</td>
-            <td>Admin</td>
-            <td>active</td>
-            <td>
-              <div className={styles.buttons}>
-                <Link href="/dashboard/users/123">
-                  <button className={`${styles.button} ${styles.view}`}>
-                    View
-                  </button>
-                </Link>
-                <button className={`${styles.button} ${styles.delete}`}>
-                  Delete
-                </button>
-              </div>
-            </td>
-          </tr>
+          {users.map((user) => (
+            <tr key={user._id}>
+              <td>
+                <div className={styles.user}>
+                  <Image
+                    src={user?.avatar || "/noavatar.png"}
+                    alt="user avatar"
+                    width={40}
+                    height={40}
+                    className={styles.userImage}
+                  />
+                  {user.username}
+                </div>
+              </td>
+              <td>{user.email}</td>
+              <td>{user.createdAt?.toString().slice(4, 16)}</td>
+              <td>{user.isAdmin ? "Admin" : "User"}</td>
+              <td>{user.isActive ? "Active" : "Inactive"}</td>
+              <td>
+                <div className={styles.buttons}>
+                  <Link href={`/dashboard/users/${user.id}`}>
+                    <button className={`${styles.button} ${styles.view}`}>
+                      View
+                    </button>
+                  </Link>
+                  <form action={deleteUser}>
+                    <input
+                      type="hidden"
+                      name="id"
+                      value={user.id}
+                    />
+                    <button className={`${styles.button} ${styles.delete}`}>
+                      Delete
+                    </button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
-      <Pagination count={10} />
+      <Pagination count={count} />
     </div>
   )
 }
