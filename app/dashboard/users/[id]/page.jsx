@@ -1,6 +1,6 @@
 import Image from "next/image"
-import { fetchUser } from "@/lib/data"
-import { updateUser } from "@/lib/actions"
+import { fetchUser } from "@/lib/get-actions"
+import { updateUser } from "@/lib/server-actions"
 import styles from "@/app/ui/dashboard/users/single-user/single-user.module.css"
 
 export const metadata = {
@@ -11,16 +11,6 @@ export const metadata = {
 export default async function SingleUserPage({ params }) {
   const { id } = params
   const user = await fetchUser(id)
-
-  // const user = {
-  //   id: id,
-  //   username: "Jon Smith",
-  //   email: "jon@email.com",
-  //   phone: "1234567890",
-  //   address: "1234 Main St, Anytown, USA",
-  //   isAdmin: false,
-  //   isActive: true,
-  // }
 
   return (
     <div className={styles.container}>

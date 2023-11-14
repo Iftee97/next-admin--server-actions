@@ -1,4 +1,4 @@
-import { addProduct } from "@/lib/actions"
+import { addProduct } from "@/lib/server-actions"
 import styles from "@/app/ui/dashboard/products/add-product/add-product.module.css"
 
 export const metadata = {

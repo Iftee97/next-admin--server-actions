@@ -3,8 +3,8 @@ import Image from "next/image"
 import Search from "@/app/ui/dashboard/search/search"
 import Pagination from "@/app/ui/dashboard/pagination/pagination"
 import styles from "@/app/ui/dashboard/users/users.module.css"
-import { fetchUsers } from "@/lib/data"
-import { deleteUser } from "@/lib/actions"
+import { fetchUsers } from "@/lib/get-actions"
+import { deleteUser } from "@/lib/server-actions"
 
 export const metadata = {
   title: "Users | Next Admin",

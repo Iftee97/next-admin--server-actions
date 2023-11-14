@@ -1,6 +1,6 @@
 import Image from "next/image"
-import { fetchProduct } from "@/lib/data"
-import { updateProduct } from "@/lib/actions"
+import { fetchProduct } from "@/lib/get-actions"
+import { updateProduct } from "@/lib/server-actions"
 import styles from "@/app/ui/dashboard/products/single-product/single-product.module.css"
 
 export const metadata = {

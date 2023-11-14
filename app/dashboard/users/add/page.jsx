@@ -1,4 +1,4 @@
-import { addUser } from "@/lib/actions"
+import { addUser } from "@/lib/server-actions"
 import styles from "@/app/ui/dashboard/users/add-user/add-user.module.css"
 
 export const metadata = {

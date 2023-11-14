@@ -3,8 +3,8 @@ import Image from "next/image"
 import Search from "@/app/ui/dashboard/search/search"
 import Pagination from "@/app/ui/dashboard/pagination/pagination"
 import styles from "@/app/ui/dashboard/products/products.module.css"
-import { fetchProducts } from "@/lib/data"
-import { deleteProduct } from "@/lib/actions"
+import { fetchProducts } from "@/lib/get-actions"
+import { deleteProduct } from "@/lib/server-actions"
 
 export const metadata = {
   title: "Products | Next Admin",
